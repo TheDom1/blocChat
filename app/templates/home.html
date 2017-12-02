@@ -1,0 +1,26 @@
+<div class="sidebar">
+  <h1>[ Bloc Chat ]</h1>
+  <span class="ion-chatboxes"></span>
+  <div class="navbar">
+    <div class="nav-list" ng-repeat="room in home.rooms">
+      <li><a ng-click="setCurrentRoom(room)">{{ room.name }}</a></li>
+    </div>
+    <li><span class="new-room-button" type="button" ng-click="home.addRoom()">Create New Room</span></li>
+  </div>
+  <div class="footer" ng-include src="'/templates/footer.html'"></div>
+</div>
+<div class="content">
+  <div class="content-header">{{ currentRoom.name }} Messages</div>
+  <div class="chat-messages" ng-repeat="message in messages">
+    <div class="message-container">
+      <div class="msgUser">User: {{ message.userName }}</div>
+      <div class="msgContent">{{ message.content }}</div>
+      <div class="msgSent">{{ message.sentAt | date:'MM/dd/yyyy @ h:mma' }}</div>
+    </div>
+  </div>
+  <div class="message-box">
+    <input class="message-input" type="text" name="input" ng-model="newMessage" placeholder="Enter Message Here"></input>
+  </div>
+  <div>
+    <button class="btn-msgSend" ng-click="sendMessage(newMessage)">Send</button>
+  </div>
